@@ -1,8 +1,8 @@
 {
-  "name": "chrismou-project-manager",
+  "name": "project-manager",
   "version": "0.0.1",
   "description": "End-to-end AI dev loop with architect, coder, QA, reviewer, and documenter agents orchestrated by a project manager command.",
-  "repository": "https://github.com/chrismou/claude-project-manager",
+  "repository": "https://github.com/chrismou/claude-plugins",
   "license": "MIT",
   "author": {
     "name": "Chris Chrisostomou",

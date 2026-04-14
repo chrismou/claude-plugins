@@ -29,14 +29,14 @@ Plan files are never deleted — they're kept in `plans/` for audit and version 
 ### Option A: Install from GitHub
 
 ```bash
-claude plugin marketplace add chrismou/claude-project-manager
-claude plugin install chrismou-project-manager
+claude plugin marketplace add chrismou/claude-plugins
+claude plugin install project-manager@chrismou-claude-plugins
 ```
 
 ### Option B: Install from source
 
 ```bash
-git clone https://github.com/chrismou/claude-project-manager
+git clone https://github.com/chrismou/claude-plugins
 claude plugin install ./claude-project-manager
 ```
 
@@ -76,15 +76,19 @@ From within any Claude Code session in your project:
 
 ```
 .
-├── agents/
-│   ├── architect.md
-│   ├── coder.md
-│   ├── qa.md
-│   ├── reviewer.md
-│   └── documenter.md
-├── commands/
-│   └── projectmanager.md
-└── plugin.json
+├── .claude-plugin/
+│   └── marketplace.json
+├── project-manager/
+│   ├── agents/
+│   │   ├── architect.md
+│   │   ├── coder.md
+│   │   ├── qa.md
+│   │   ├── reviewer.md
+│   │   └── documenter.md
+│   ├── commands/
+│   │   └── projectmanager.md
+│   └── plugin.json
+└── README.md
 ```
 
 ## License
