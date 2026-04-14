@@ -14,6 +14,12 @@
     "agents",
     "dev-loop"
   ],
-  "agents": "./agents/",
+  "agents": [
+    "./agents/architect.md",
+    "./agents/coder.md",
+    "./agents/qa.md",
+    "./agents/reviewer.md",
+    "./agents/documenter.md"
+  ],
   "commands": "./commands/"
 }
