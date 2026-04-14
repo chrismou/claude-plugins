@@ -1,4 +1,4 @@
-# claude-project-manager
+# claude-plugins
 
 > **Note:** This plugin is currently in daily use and in active development/testing. The interface, agent prompts, and workflow structure may change before a 1.0.0 release. Use with that in mind.
 
@@ -15,6 +15,7 @@ Running `/projectmanager <task description>` spins up a coordinated pipeline of 
 5. **Documenter** — updates `README.md`, docstrings, and `CHANGELOG.md` to reflect the changes made.
 
 There are two human checkpoints built in:
+
 - After planning, so you can review and tweak the design doc before code is written.
 - After review, so you can accept the result or request changes.
 
@@ -64,13 +65,13 @@ From within any Claude Code session in your project:
 
 ## Agents
 
-| Agent | Model | Role |
-|---|---|---|
-| architect | claude-sonnet-4-6 | Writes technical design docs, no code changes |
-| coder | claude-sonnet-4-6 | Implements the plan |
-| qa-tester | claude-sonnet-4-6 | Tests for bugs, edge cases, coverage gaps |
-| reviewer | claude-sonnet-4-6 | Security, performance, and style audit |
-| documenter | claude-haiku-4-5 | Updates docs and CHANGELOG |
+| Agent      | Model             | Role                                          |
+| ---------- | ----------------- | --------------------------------------------- |
+| architect  | claude-sonnet-4-6 | Writes technical design docs, no code changes |
+| coder      | claude-sonnet-4-6 | Implements the plan                           |
+| qa-tester  | claude-sonnet-4-6 | Tests for bugs, edge cases, coverage gaps     |
+| reviewer   | claude-sonnet-4-6 | Security, performance, and style audit        |
+| documenter | claude-haiku-4-5  | Updates docs and CHANGELOG                    |
 
 ## Project structure
 
