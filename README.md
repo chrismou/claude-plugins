@@ -26,10 +26,11 @@ Plan files are never deleted — they're kept in `plans/` for audit and version 
 
 ## Installation
 
-### Option A: Install from the registry
+### Option A: Install from GitHub
 
 ```bash
-claude plugin install chrismou/claude-project-manager
+claude plugin marketplace add chrismou/claude-project-manager
+claude plugin install chrismou-project-manager
 ```
 
 ### Option B: Install from source
