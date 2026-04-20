@@ -8,8 +8,8 @@
   },
   "plugins": [
     {
-      "name": "project-manager",
-      "source": "./project-manager",
+      "name": "chrismou-claude-plugins",
+      "source": "./chrismou-claude-plugins",
       "description": "End-to-end AI dev loop orchestrating a team of specialised agents through a plan → implement → review → document cycle.",
       "version": "0.0.1",
       "author": {
