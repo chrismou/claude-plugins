@@ -6,7 +6,7 @@ A Claude Code plugin that implements an end-to-end AI dev loop, orchestrating a 
 
 ## What it does
 
-Running `/projectmanager <task description>` spins up a coordinated pipeline of agents:
+Running `/project-manager <task description>` spins up a coordinated pipeline of agents:
 
 1. **Architect** — analyses your codebase, writes a technical design doc to `plans/YYYYMMDD-slug.md`, then pauses so you can review and edit it before anything is touched.
 2. **Coder** — executes the plan precisely: creates/modifies files, runs syntax checks, and self-corrects minor blockers.
@@ -46,13 +46,13 @@ claude plugin install ./claude-plugins/project-manager
 From within any Claude Code session in your project:
 
 ```
-/projectmanager <description of your task>
+/project-manager <description of your task>
 ```
 
 **Example:**
 
 ```
-/projectmanager Add rate limiting to the public API endpoints
+/project-manager Add rate limiting to the public API endpoints
 ```
 
 ### What to expect
@@ -87,7 +87,7 @@ From within any Claude Code session in your project:
 │   │   ├── reviewer.md
 │   │   └── documenter.md
 │   ├── commands/
-│   │   └── projectmanager.md
+│   │   └── project-manager.md
 │   └── plugin.json
 └── README.md
 ```
