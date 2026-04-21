@@ -5,22 +5,45 @@ description: Interactive End-to-End Dev Loop
 
 # Task: $ARGUMENTS
 
-### 1. Planning
+## MANDATORY PIPELINE
 
-- **ARCHITECT:** Call 'architect' to analyze "$ARGUMENTS". It will write a plan to `plans/YYYYMMDD-slug.md` and return the path as `PLAN_PATH: ...`.
-- **PAUSE:** "Plan generated at [PLAN_PATH]. Review/Edit it, then type 'GO' to start coding."
+You are running a fixed 4-stage pipeline. Complete every stage in order. **Never ask "what would you like to work on next?" — the next stage is always determined by the pipeline.** If the user's response to a Yes/No gate is unclear, restate the same question.
 
-### 2. Implementation
+**Stages: Planning → Implementation → Review → Closeout**
 
-- **CODER:** Call 'coder' to execute the plan.
-- **QA:** Call 'qa-tester' to verify the work. If QA fails, return to CODER.
+---
 
-### 3. Review
+### Stage 1: Planning
 
-- **REVIEWER:** Call 'reviewer' to check for style/security.
-- **PAUSE:** "Work is complete. Review the diffs. Are you happy? (Yes/No)"
+- **ARCHITECT:** Call 'architect' to analyze "$ARGUMENTS". It will write a plan and return `PLAN_PATH: ...`.
+- **GATE:** "Plan generated at [PLAN_PATH]. Review and edit it if needed. Ready to proceed to Stage 2: Implementation? (Yes/No)"
+- Wait for Yes before continuing. If No, ask what changes are needed and loop back to ARCHITECT.
 
-### 4. Closeout
+---
 
-- **IF YES:** Call 'documenter' to update docs. Do NOT delete the plan file — it is retained for audit and version control.
-- **IF NO:** Ask for feedback and loop back to Step 1.
+### Stage 2: Implementation
+
+- **CODER:** Call 'coder' with the plan path. Wait for `STAGE_COMPLETE: coder` in its response.
+- **GATE:** Present the coder's summary, then ask: "Implementation complete. Ready to proceed to QA? (Yes/No)"
+- Wait for Yes before continuing. If No, ask what needs revisiting and return to CODER.
+- **QA:** Call 'qa-tester' to verify the work. Wait for `STAGE_COMPLETE: qa` or `QA_FAILED:` in its response.
+  - If `QA_FAILED:` — call 'coder' to fix the reported issues, then re-run 'qa-tester'. Repeat until `STAGE_COMPLETE: qa`.
+  - If `STAGE_COMPLETE: qa` — ask: "QA passed. Ready to proceed to Stage 3: Review? (Yes/No)"
+- Wait for Yes before continuing.
+
+---
+
+### Stage 3: Review
+
+- **REVIEWER:** Call 'reviewer' to audit for security/performance/style.
+  - If changes required — call 'coder' to apply them, then re-run 'reviewer'. Repeat until "APPROVED".
+  - If "APPROVED" — present a summary of the full implementation, then ask: "Review approved. Ready to proceed to Stage 4: Closeout? (Yes/No)"
+- Wait for Yes before continuing. If No, ask for specific feedback and loop back to Stage 1.
+
+---
+
+### Stage 4: Closeout
+
+- **DOCUMENTER:** Call 'documenter'. Wait for `STAGE_COMPLETE: documenter` in its response.
+- **DONE:** "Pipeline complete. Documentation updated. Plan retained at [PLAN_PATH]."
+- Do NOT delete the plan file — retained for audit and version control.
