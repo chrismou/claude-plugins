@@ -6,7 +6,7 @@ A Claude Code plugin that implements an end-to-end AI dev loop, orchestrating a 
 
 ## What it does
 
-Running `/project-manager <task description>` spins up a coordinated pipeline of agents:
+Running `/chrismou-claude-plugins:project-manager <task description>` spins up a coordinated pipeline of agents:
 
 1. **Architect** — analyses your codebase, writes a technical design doc to `plans/YYYYMMDD-slug.md`, then pauses so you can review and edit it before anything is touched.
 2. **Coder** — executes the plan precisely: creates/modifies files, runs syntax checks, and self-corrects minor blockers.
@@ -31,7 +31,7 @@ Plan files are never deleted — they're kept in `plans/` for audit and version 
 
 ```bash
 claude plugin marketplace add chrismou/claude-plugins
-claude plugin install project-manager@chrismou-claude-plugins
+claude plugin install chrismou-claude-plugins@chrismou-claude-plugins
 ```
 
 ### Option B: Install from source
@@ -46,13 +46,13 @@ claude plugin install ./claude-plugins/project-manager
 From within any Claude Code session in your project:
 
 ```
-/project-manager <description of your task>
+/chrismou-claude-plugins:project-manager <description of your task>
 ```
 
 **Example:**
 
 ```
-/project-manager Add rate limiting to the public API endpoints
+/chrismou-claude-plugins:project-manager Add rate limiting to the public API endpoints
 ```
 
 ### What to expect
