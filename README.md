@@ -38,7 +38,7 @@ claude plugin install project-manager@chrismou-claude-plugins
 
 ```bash
 git clone https://github.com/chrismou/claude-plugins
-claude plugin install ./claude-project-manager
+claude plugin install ./claude-plugins/project-manager
 ```
 
 ## Usage
