@@ -11,13 +11,28 @@ You are running a fixed 4-stage pipeline. Complete every stage in order. **Never
 
 **Stages: Planning → Implementation → Review → Closeout**
 
+### Permission model
+
+Stage 1 runs inside **plan mode** so the user approves implementation once and lets Stages 2–4 run unattended:
+
+- Planning is **attended** — the user reviews/edits the plan before any code is written.
+- Exiting plan mode is the single gate where the user can choose **"auto-accept edits"**, which suppresses per-edit permission prompts for the rest of the pipeline.
+
+Permission prompts are enforced by the harness, not the model — they cannot be turned off by instruction, only by the permission mode the user selects when exiting plan mode.
+
 ---
 
 ### Stage 1: Planning
 
-- **ARCHITECT:** Call 'architect' to analyze "$ARGUMENTS". It will write a plan and return `PLAN_PATH: ...`.
-- **GATE:** "Plan generated at [PLAN_PATH]. Review and edit it if needed. Ready to proceed to Stage 2: Implementation? (Yes/No)"
-- Wait for Yes before continuing. If No, ask what changes are needed and loop back to ARCHITECT.
+- **ENTER PLAN MODE:** If not already in plan mode, call `EnterPlanMode`. This keeps planning attended and sets up the auto-accept gate at the start of implementation.
+- **ARCHITECT:** Call 'architect' to analyze "$ARGUMENTS". It writes a plan and returns `PLAN_PATH: ...`. Approving the plan-file write is expected (one prompt while in plan mode).
+- **PAUSE (attended review):** "Plan written to [PLAN_PATH]. Review and edit it directly if needed. Reply **GO** when you're ready to start implementation."
+  - Wait for GO. If the user requests changes, edit the plan or loop back to ARCHITECT before continuing.
+- **EXIT PLAN MODE:** On GO, call `ExitPlanMode` to begin implementation. Pre-declare the Bash the later stages need via `allowedPrompts` so they don't prompt either:
+  - `{ tool: "Bash", prompt: "run tests" }`
+  - `{ tool: "Bash", prompt: "run linters (eslint, pint, phpcs, pyflakes)" }`
+  - `{ tool: "Bash", prompt: "install dependencies" }`
+  - This surfaces the native approval dialog. Choosing **"auto-accept edits"** lets Stages 2–4 run without per-edit prompts. If the user picks manual approval instead, the pipeline still works — they'll just confirm edits as before.
 
 ---
 
