@@ -59,9 +59,9 @@ From within any Claude Code session in your project:
 
 ### What to expect
 
-1. The Architect analyses your project and writes a plan. You'll see the plan path printed.
-2. Open the plan file, review it, make any edits you want.
-3. Type `GO` to kick off implementation. You'll get the plan-mode approval dialog — pick **"auto-accept edits"** to run the rest unattended.
+1. The Architect analyses your project and drafts a plan in plan mode.
+2. Review the drafted plan, make any edits you want.
+3. Type `GO` to kick off implementation. You'll get the plan-mode approval dialog — pick **"auto-accept edits"** to run the rest unattended. The approved plan is then saved to `plans/YYYYMMDD-slug.md` for audit.
 4. The Coder, QA, and Reviewer agents run in sequence (looping back as needed).
 5. You'll be asked to confirm the final result. Type `Yes` to proceed to documentation, or `No` to provide feedback and restart the loop.
 
