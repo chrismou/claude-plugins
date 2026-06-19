@@ -11,32 +11,13 @@ You are running a fixed 4-stage pipeline. Complete every stage in order. **Never
 
 **Stages: Planning → Implementation → Review → Closeout**
 
-### Permission model
-
-Stage 1 runs inside **plan mode** so the user approves implementation once and lets Stages 2–4 run unattended:
-
-- Planning is **attended** — the user reviews/edits the plan before any code is written.
-- Exiting plan mode is the single gate where the user can choose **"auto-accept edits"**, which suppresses per-edit permission prompts for the rest of the pipeline.
-
-Permission prompts are enforced by the harness, not the model — they cannot be turned off by instruction, only by the permission mode the user selects when exiting plan mode.
-
 ---
 
 ### Stage 1: Planning
 
-Plan mode permits writing to **only one** file — the plan file named in the plan-mode system message — and blocks all other writes, including subagent writes. So the architect cannot write the repo plan file while in plan mode; it returns the plan as text, you draft it into the plan-mode file, and you persist the audit copy to `plans/` only after the user approves (when accept-edits is active).
-
-- **ENTER PLAN MODE:** If not already in plan mode, call `EnterPlanMode`. Note the plan-file path from the plan-mode system message — that is the only file writable until you exit.
-- **ARCHITECT (read-only):** Call 'architect' to analyze "$ARGUMENTS". It returns the plan as text ending in `PLAN_READY` (it does not write files in plan mode).
-- **DRAFT:** Write the architect's returned plan to the plan-mode file.
-- **PAUSE (attended review):** "Plan drafted — review and edit it directly if needed. Reply **GO** when you're ready to start implementation."
-  - Wait for GO. If the user requests changes, re-run the architect or edit the draft before continuing.
-- **EXIT PLAN MODE:** On GO, call `ExitPlanMode` to begin implementation. Pre-declare the Bash the later stages need via `allowedPrompts` so they don't prompt either:
-  - `{ tool: "Bash", prompt: "run tests" }`
-  - `{ tool: "Bash", prompt: "run linters (eslint, pint, phpcs, pyflakes)" }`
-  - `{ tool: "Bash", prompt: "install dependencies" }`
-  - This surfaces the native approval dialog. Choosing **"auto-accept edits"** lets Stages 2–4 run without per-edit prompts. If the user picks manual approval instead, the pipeline still works — they'll just confirm edits as before.
-- **PERSIST PLAN (audit artifact):** Now that accept-edits is active, copy the approved plan from the plan-mode file into the repo at `plans/YYYYMMDD-slug.md` (create `plans/` if needed). This path is `PLAN_PATH` — pass it to every later stage. Never delete it; it is retained for audit and version control.
+- **ARCHITECT:** Call 'architect' to analyze "$ARGUMENTS". It will write a plan and return `PLAN_PATH: ...`.
+- **GATE:** "Plan generated at [PLAN_PATH]. Review and edit it if needed. Ready to proceed to Stage 2: Implementation? (Yes/No)"
+- Wait for Yes before continuing. If No, ask what changes are needed and loop back to ARCHITECT.
 
 ---
 

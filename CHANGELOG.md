@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `project-manager-auto` slash command — a variant of the dev loop where planning runs inside Claude Code plan mode, so the user reviews the drafted plan and then picks "auto-accept edits" at the plan-mode approval dialog to run the implementation, QA, and review stages unattended.
+- `architect-auto` agent — a read-only architect for the plan-mode flow that returns the design doc as text for the project manager to persist, rather than writing the plan file itself.
+
 ## [0.0.1] - 2026-06-18
 
 ### Added
@@ -17,7 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `qa-tester` agent — reviews newly written code for bugs, edge cases, missing error handling, and test-coverage gaps after implementation is complete.
 - `reviewer` agent — audits code for security vulnerabilities, performance issues, and best-practice violations.
 - `documenter` agent — updates technical documentation and appends a concise entry to `CHANGELOG.md` at closeout.
-- Plan-mode integration — the architect runs inside Claude Code plan mode so the user can review and approve the plan before the coder begins implementation.
 
 [Unreleased]: https://github.com/chrismou/claude-plugins/compare/v0.0.1...HEAD
 [0.0.1]: https://github.com/chrismou/claude-plugins/releases/tag/v0.0.1
