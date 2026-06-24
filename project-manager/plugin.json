@@ -17,6 +17,7 @@
   "agents": [
     "./agents/architect.md",
     "./agents/architect-auto.md",
+    "./agents/architect-test.md",
     "./agents/coder.md",
     "./agents/qa.md",
     "./agents/reviewer.md",

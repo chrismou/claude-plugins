@@ -27,9 +27,8 @@ Permission prompts are enforced by the harness, not the model — they cannot be
 Plan mode permits writing to **only one** file — the plan file named in the plan-mode system message — and blocks all other writes, including subagent writes. So the architect cannot write the repo plan file while in plan mode; it returns the plan as text, you draft it into the plan-mode file, and you persist the audit copy to `plans/` only after the user approves (when accept-edits is active).
 
 - **ENTER PLAN MODE:** If not already in plan mode, call `EnterPlanMode`. Note the plan-file path from the plan-mode system message — that is the only file writable until you exit.
-- **ARCHITECT (read-only):** Call 'architect-auto' to analyze "$ARGUMENTS". It returns the plan as text, then a `CLARIFICATIONS_NEEDED:` block, ending in `PLAN_READY` (it does not write files in plan mode).
-- **CLARIFICATION GATE:** If `CLARIFICATIONS_NEEDED:` is anything other than `none`, you MUST resolve it before drafting the final plan. Present the numbered questions to the user verbatim and ask them to answer each one. **Do not proceed, and do not pick answers yourself.** Wait for the user's answers, then re-run ARCHITECT with "$ARGUMENTS" plus the answers. Repeat until it returns `CLARIFICATIONS_NEEDED: none` (or the user explicitly tells you to proceed with the open questions as-is).
-- **DRAFT:** Write the architect's returned plan (excluding the `CLARIFICATIONS_NEEDED:` / `PLAN_READY` control lines) to the plan-mode file.
+- **ARCHITECT (read-only):** Call 'architect-auto' to analyze "$ARGUMENTS". It returns the plan as text ending in `PLAN_READY` (it does not write files in plan mode).
+- **DRAFT:** Write the architect's returned plan to the plan-mode file.
 - **PAUSE (attended review):** "Plan drafted — review and edit it directly if needed. Reply **GO** when you're ready to start implementation."
   - Wait for GO. If the user requests changes, re-run the architect or edit the draft before continuing.
 - **EXIT PLAN MODE:** On GO, call `ExitPlanMode` to begin implementation. Pre-declare the Bash the later stages need via `allowedPrompts` so they don't prompt either:

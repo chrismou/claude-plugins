@@ -1,6 +1,6 @@
 ---
-name: project-manager
-description: Interactive End-to-End Dev Loop
+name: project-manager-test
+description: Interactive End-to-End Dev Loop (test build)
 ---
 
 # Task: $ARGUMENTS
@@ -15,7 +15,8 @@ You are running a fixed 4-stage pipeline. Complete every stage in order. **Never
 
 ### Stage 1: Planning
 
-- **ARCHITECT:** Call 'architect' to analyze "$ARGUMENTS". It will write a plan and return `PLAN_PATH: ...`.
+- **ARCHITECT:** Call 'architect-test' to analyze "$ARGUMENTS". It will write a plan and return a `CLARIFICATIONS_NEEDED:` block followed by `PLAN_PATH: ...`.
+- **CLARIFICATION GATE:** If `CLARIFICATIONS_NEEDED:` is anything other than `none`, you MUST resolve it before the proceed gate. Present the numbered questions to the user verbatim and ask them to answer each one. **Do not proceed, and do not pick answers yourself.** Wait for the user's answers, then re-run ARCHITECT with "$ARGUMENTS" plus the answers so it can revise the plan. Repeat until the architect returns `CLARIFICATIONS_NEEDED: none` (or the user explicitly tells you to proceed with the open questions as-is).
 - **GATE:** "Plan generated at [PLAN_PATH]. Review and edit it if needed. Ready to proceed to Stage 2: Implementation? (Yes/No)"
 - Wait for Yes before continuing. If No, ask what changes are needed and loop back to ARCHITECT.
 
