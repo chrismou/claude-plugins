@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 2026-06-24
+
+### Added
+
+- CI `version-bump` workflow — every PR into `main` must raise `plugin.json` (and keep `marketplace.json` in sync) to a version strictly greater than the base branch, or the check fails and the merge is blocked.
+
 ## [0.0.3] - 2026-06-24
 
 ### Added
@@ -32,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `reviewer` agent — audits code for security vulnerabilities, performance issues, and best-practice violations.
 - `documenter` agent — updates technical documentation and appends a concise entry to `CHANGELOG.md` at closeout.
 
-[Unreleased]: https://github.com/chrismou/claude-plugins/compare/v0.0.3...HEAD
+[Unreleased]: https://github.com/chrismou/claude-plugins/compare/v0.0.4...HEAD
+[0.0.4]: https://github.com/chrismou/claude-plugins/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/chrismou/claude-plugins/compare/v0.0.1...v0.0.3
 [0.0.1]: https://github.com/chrismou/claude-plugins/releases/tag/v0.0.1
