@@ -11,7 +11,7 @@
       "name": "chrismou-claude-plugins",
       "source": "./project-manager",
       "description": "End-to-end AI dev loop orchestrating a team of specialised agents through a plan → implement → review → document cycle.",
-      "version": "0.0.2",
+      "version": "0.0.3",
       "author": {
         "name": "Chris Chrisostomou"
       },
