@@ -21,12 +21,13 @@ There are two human checkpoints built in:
 
 Plan files are never deleted — they're kept in `plans/` for audit and version history.
 
-### Two ways to run it
+### Three ways to run it
 
-The plugin ships two commands that share the same five-agent pipeline:
+The plugin ships three commands that share the same five-agent pipeline:
 
 - **`project-manager`** — the standard flow. The Architect writes the plan, you review/edit it, and you approve each stage as it goes. File edits are approved by Claude Code's normal permission prompts.
 - **`project-manager-auto`** — the same pipeline, but planning runs in Claude Code's **plan mode** so it stays attended while you review the design. When you start implementation you're shown the native approval dialog — choose **"auto-accept edits"** to let the Coder, QA, and Reviewer stages run unattended without a permission prompt on every file change.
+- **`project-manager-test`** — a **3-phase pipeline** with streamlined gating: Plan, then Implement (Code + QA + Review iterate automatically), then Document. Only two user confirmation gates: after planning (before implementation) and after implementation converges (before documentation). This version is designed for a faster iteration cycle with fewer interruptions.
 
 ## Requirements
 
@@ -62,6 +63,12 @@ Or, to run planning in plan mode with auto-accept for the implementation stages:
 /chrismou-claude-plugins:project-manager-auto <description of your task>
 ```
 
+Or, to run a faster iteration with automatic Code/QA/Review loop and only two user gates:
+
+```
+/chrismou-claude-plugins:project-manager-test <description of your task>
+```
+
 **Example:**
 
 ```
@@ -83,6 +90,15 @@ Or, to run planning in plan mode with auto-accept for the implementation stages:
 3. Type `GO` to kick off implementation. You'll get the plan-mode approval dialog — pick **"auto-accept edits"** to run the rest unattended. The approved plan is then saved to `plans/YYYYMMDD-slug.md` for audit.
 4. The Coder, QA, and Reviewer agents run in sequence (looping back as needed).
 5. You'll be asked to confirm the final result. Type `Yes` to proceed to documentation, or `No` to provide feedback and restart the loop.
+
+### What to expect (`project-manager-test`)
+
+1. The Architect analyses your project and writes a plan to `plans/YYYYMMDD-slug.md`. You'll see the plan path printed.
+2. Open the plan file, review it, make any edits you want. Answer any clarification questions the architect raises.
+3. Type `Yes` to kick off implementation.
+4. The Coder, QA, and Reviewer agents run automatically with no user confirmations between them. QA failures and review feedback are resolved in-loop.
+5. You'll be asked to confirm once the implementation is complete and all stages have converged. Type `Yes` to proceed to documentation, or `No` to provide feedback and restart planning.
+6. Documentation is updated and the plan is retained in `plans/` for audit.
 
 ## Agents
 
