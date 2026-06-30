@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.6] - 2026-06-30
+
+### Fixed
+
+- `project-manager-test` command now properly gates unattended execution scopes. Added UNATTENDED-SCOPE selection gate that triggers only when GATE 1 response implies unattended execution. Users select either "Entire process" (Implement + Document run back-to-back, skipping GATE 2) or "Implementation only" (Implement runs unattended, then stops at GATE 2 for confirmation before Document). This fixes a bug where unattended phrasing alone was incorrectly interpreted as authorization to skip all remaining gates.
+
 ## [0.0.5] - 2026-06-26
 
 ### Changed
@@ -42,7 +48,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `reviewer` agent — audits code for security vulnerabilities, performance issues, and best-practice violations.
 - `documenter` agent — updates technical documentation and appends a concise entry to `CHANGELOG.md` at closeout.
 
-[Unreleased]: https://github.com/chrismou/claude-plugins/compare/v0.0.4...HEAD
+[Unreleased]: https://github.com/chrismou/claude-plugins/compare/v0.0.6...HEAD
+[0.0.6]: https://github.com/chrismou/claude-plugins/compare/v0.0.5...v0.0.6
+[0.0.5]: https://github.com/chrismou/claude-plugins/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/chrismou/claude-plugins/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/chrismou/claude-plugins/compare/v0.0.1...v0.0.3
 [0.0.1]: https://github.com/chrismou/claude-plugins/releases/tag/v0.0.1
