@@ -96,8 +96,11 @@ Or, to run a faster iteration with automatic Code/QA/Review loop and only two us
 1. The Architect analyses your project and writes a plan to `plans/YYYYMMDD-slug.md`. You'll see the plan path printed.
 2. Open the plan file, review it, make any edits you want. Answer any clarification questions the architect raises.
 3. Type `Yes` to kick off implementation.
+   - If your approval implies unattended execution (e.g., "run it unattended", "just finish it without me"), you'll be asked to choose your scope:
+     - **"Entire process"** — Implementation and Documentation run back-to-back with no additional confirmation.
+     - **"Implementation only"** — Implementation runs unattended, then you'll confirm before Documentation starts.
 4. The Coder, QA, and Reviewer agents run automatically with no user confirmations between them. QA failures and review feedback are resolved in-loop.
-5. You'll be asked to confirm once the implementation is complete and all stages have converged. Type `Yes` to proceed to documentation, or `No` to provide feedback and restart planning.
+5. You'll be asked to confirm once the implementation is complete and all stages have converged (unless "Entire process" was selected). Type `Yes` to proceed to documentation, or `No` to provide feedback and restart planning.
 6. Documentation is updated and the plan is retained in `plans/` for audit.
 
 ## Agents
