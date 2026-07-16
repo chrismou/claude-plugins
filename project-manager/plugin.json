@@ -1,6 +1,6 @@
 {
   "name": "chrismou-claude-plugins",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "End-to-end AI dev loop with architect, coder, QA, reviewer, and documenter agents orchestrated by a project manager command.",
   "repository": "https://github.com/chrismou/claude-plugins",
   "license": "MIT",
@@ -17,7 +17,6 @@
   "agents": [
     "./agents/architect.md",
     "./agents/architect-auto.md",
-    "./agents/architect-test.md",
     "./agents/coder.md",
     "./agents/qa.md",
     "./agents/reviewer.md",

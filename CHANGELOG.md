@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.7] - 2026-07-15
+
+### Changed
+
+- `project-manager` command now implements the full 3-phase pipeline (Plan → Implement → Document) with built-in clarification gating and unattended-scope selection. This promotion replaces the former `project-manager-test` behaviour.
+- `architect` agent now runs on `claude-opus-4-8` (upgraded from `claude-sonnet-4-6`) and surfaces structured clarifications: Assumptions, Open Questions, and Non-Obvious Side Effects, with a machine-readable `CLARIFICATIONS_NEEDED:` block for decision-forcing questions before implementation.
+
+### Removed
+
+- `project-manager-test` command — the 3-phase pipeline with clarifications and unattended-scope gating is now the standard `project-manager` flow.
+- `architect-test` agent — the clarifications workflow is now built into the base `architect` agent.
+
 ## [0.0.6] - 2026-06-30
 
 ### Fixed
