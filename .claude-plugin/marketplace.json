@@ -4,14 +4,16 @@
     "name": "Chris Chrisostomou"
   },
   "metadata": {
-    "description": "End-to-end AI dev loop with architect, coder, QA, reviewer, and documenter agents."
+    "description": "Chris Chrisostomou's Claude Code plugin marketplace."
   },
   "plugins": [
     {
-      "name": "chrismou-claude-plugins",
-      "source": "./project-manager",
+      "name": "chrismou-project-manager",
+      "source": {
+        "source": "github",
+        "repo": "chrismou/claude-project-manager-workflow"
+      },
       "description": "End-to-end AI dev loop orchestrating a team of specialised agents through a plan → implement → review → document cycle.",
-      "version": "0.0.7",
       "author": {
         "name": "Chris Chrisostomou"
       },
