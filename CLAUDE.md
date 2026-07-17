@@ -26,3 +26,4 @@ python3 -c "import json; json.load(open('.claude-plugin/marketplace.json')); pri
 
 - Plugin `name` in `marketplace.json` is the identifier users install with (`claude plugin install <name>@chrismou-claude-plugins`). Renaming it is a breaking change for existing users.
 - The `source.repo` must be a real, public GitHub repo containing a valid plugin (its own `.claude-plugin/plugin.json`). This repo does not vendor or mirror that content.
+- Plugins that ship commands (ie, project manager) are generally prefixed `chrismou-` as it helps with finding them in the CLI. One time installation pligins, ie Claude hooks, do not require this prefix.
