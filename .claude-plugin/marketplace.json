@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "project-manager",
+      "name": "chrismou-project-manager",
       "source": {
         "source": "github",
         "repo": "chrismou/claude-project-manager-workflow"
